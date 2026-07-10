@@ -1,5 +1,11 @@
 # Claude Web Studio
 
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-FF0055?logo=framer&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 AI-powered premium website builder stack — Next.js + Framer Motion + design system + 21st.dev components, orchestrated by Claude Code.
 
 Turn Claude Code from a generic code generator into a senior-level web designer. One prompt, agency-grade output.
@@ -98,8 +104,9 @@ npm run dev
 # 4. Open Claude Code in the project directory
 claude
 
-# 5. Tell Claude what to build
-#    (It will ask for your brand colors before writing any visual code)
+# 5. Use the built-in command to start building
+/build-page
+# Claude will ask for your brand colors, then generate production-ready UI
 ```
 
 ---
@@ -202,13 +209,17 @@ Create `design-system/pages/pricing.md` to override MASTER rules for a specific 
 
 ### `/build-page`
 
-A project-level Claude Code command (`.claude/commands/build-page.md`) that enforces all 4 layers on every generation:
+**How to use:** In Claude Code, type `/build-page` in the prompt. Claude reads the command definition and follows all 4 layers automatically.
 
-1. Uses Next.js App Router + TypeScript
-2. Applies Framer Motion animations (scroll reveals, stagger, hover)
-3. Follows the design system (asks for colors if not set)
-4. Pulls from 21st.dev when possible
-5. Runs the quality checklist before delivering
+What it enforces:
+
+1. Next.js App Router + TypeScript
+2. Framer Motion animations (scroll reveals, stagger, hover)
+3. Design system rules (asks for brand colors if not yet configured)
+4. 21st.dev components where applicable
+5. Quality checklist before delivering
+
+You can also just describe what you want in plain language — the design system and command file are both read automatically by Claude Code when working in this project.
 
 ---
 

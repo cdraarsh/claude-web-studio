@@ -1,56 +1,52 @@
-# Design System Master File
+# Design System
 
-> **LOGIC:** When building a specific page, first check `design-system/pages/[page-name].md`.
-> If that file exists, its rules **override** this Master file.
-> If not, strictly follow the rules below.
+> When building a specific page, check `design-system/pages/[page-name].md` first.
+> If a page-level file exists, its rules override this document.
 
 ---
 
 **Project:** claude-web-studio
-**Generated:** 2026-07-10
 
 ---
 
-## BEFORE YOU BUILD: Ask for Brand Colors
+## Brand Colors
 
-**No default palette is defined.** Before building any component or page, you MUST ask the user for:
+No default palette is defined. Colors are generated per-project using the design system generator:
 
-1. **Brand colors** — primary, secondary, accent/CTA
-2. **Background preference** — light, dark, or both
-3. **Mood/vibe** — e.g. "warm and friendly", "cold and corporate", "bold and playful"
-
-Then run:
 ```bash
-python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<user's keywords>" --design-system --persist -p "<project-name>"
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<keywords>" --design-system --persist -p "<project-name>"
 ```
 
-This generates a project-specific palette. Until colors are provided, DO NOT proceed with visual code.
+This produces a project-specific palette based on product type, industry, and style preferences.
 
 ---
 
-## Global Rules (color-independent)
+## Typography
 
-### Typography
+Typography is configured per-project using the design system generator. Guidelines:
 
-Ask user for font preference, or run `/ui-ux-pro-max` to get a recommended pairing. Common starting point:
-- Heading: sans-serif, 600-700 weight
-- Body: sans-serif or serif, 400-500 weight
-- Line height: 1.5-1.75 for body, 1.1-1.3 for headings
-- Max line length: 65-75 characters
+- Heading: sans-serif, 600–700 weight
+- Body: sans-serif or serif, 400–500 weight
+- Line height: 1.5–1.75 for body, 1.1–1.3 for headings
+- Max line length: 65–75 characters
 
-### Spacing System (8px grid)
+---
+
+## Spacing (8px grid)
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
+| `--space-xs` | 4px / 0.25rem | Tight gaps |
+| `--space-sm` | 8px / 0.5rem | Icon gaps, inline spacing |
+| `--space-md` | 16px / 1rem | Standard padding |
+| `--space-lg` | 24px / 1.5rem | Section padding |
+| `--space-xl` | 32px / 2rem | Large gaps |
+| `--space-2xl` | 48px / 3rem | Section margins |
+| `--space-3xl` | 64px / 4rem | Hero padding |
 
-### Shadow Depths
+---
+
+## Shadows
 
 | Level | Value | Usage |
 |-------|-------|-------|
@@ -61,7 +57,7 @@ Ask user for font preference, or run `/ui-ux-pro-max` to get a recommended pairi
 
 ---
 
-## Component Specs (structure only — colors come from brand)
+## Components
 
 ### Buttons
 
@@ -70,7 +66,7 @@ Ask user for font preference, or run `/ui-ux-pro-max` to get a recommended pairi
 - Font-weight: 600
 - Transition: all 200ms ease
 - Hover: opacity 0.9, translateY(-1px)
-- Always: `cursor: pointer`
+- Cursor: pointer
 
 ### Cards
 
@@ -85,60 +81,67 @@ Ask user for font preference, or run `/ui-ux-pro-max` to get a recommended pairi
 - Padding: 12px 16px
 - Border: 1px solid (neutral border color)
 - Border-radius: 8px
-- Font-size: 16px (prevents zoom on mobile)
+- Font-size: 16px (prevents iOS zoom)
 - Focus: colored border + ring shadow
 
 ### Modals
 
-- Overlay: rgba(0,0,0,0.5) + backdrop-filter blur(4px)
-- Container: white/dark bg, border-radius 16px, padding 32px, shadow-xl
+- Overlay: rgba(0,0,0,0.5) with backdrop-filter blur(4px)
+- Container: border-radius 16px, padding 32px, shadow-xl
 - Max-width: 500px, width: 90%
 
 ---
 
-## Style Guidelines
+## Style Direction
 
-**Style:** Minimalism & Swiss Style (override by running /ui-ux-pro-max with different keywords)
+**Default style:** Minimalism & Swiss Style
 
-**Keywords:** Clean, simple, spacious, functional, white space, high contrast, geometric, sans-serif, grid-based, essential
+Clean, spacious, functional, high contrast, geometric, grid-based. Best for SaaS platforms, enterprise apps, dashboards, professional tools.
 
-**Key Effects:** Subtle hover (200-250ms), smooth transitions, sharp shadows if any, clear type hierarchy, fast loading
+**Key effects:** Subtle hover (200–250ms), smooth transitions, sharp shadows, clear type hierarchy, fast loading.
 
-### Page Pattern
-
-**Pattern Name:** Scroll-Triggered Storytelling
-
-- **Conversion Strategy:** Narrative increases time-on-page 3x. Use progress indicator. Mobile: simplify animations.
-- **CTA Placement:** End of each chapter (mini) + Final climax CTA
-- **Section Order:** 1. Intro hook, 2. Problem, 3. Journey, 4. Solution, 5. Climax CTA
+Override by running the design system generator with different keywords (e.g., "brutalist", "playful", "glassmorphism").
 
 ---
 
-## Anti-Patterns (Do NOT Use)
+## Page Pattern
 
-- No emojis as icons — use SVG icons (Heroicons, Lucide, Simple Icons)
+**Scroll-Triggered Storytelling**
+
+| Section | Content |
+|---------|---------|
+| 1 | Intro hook |
+| 2 | Problem (Chapter 1) |
+| 3 | Journey (Chapter 2) |
+| 4 | Solution (Chapter 3) |
+| 5 | Climax CTA |
+
+CTA placement: end of each chapter (mini) + final climax CTA.
+
+---
+
+## Anti-Patterns
+
+- No emojis as icons — use SVG icons (Heroicons, Lucide)
 - No missing cursor:pointer on clickable elements
-- No layout-shifting hovers — avoid scale transforms that displace siblings
-- No low contrast text — 4.5:1 minimum contrast ratio
-- No instant state changes — always use transitions (150-300ms)
-- No invisible focus states — focus states must be visible for a11y
+- No layout-shifting hover effects
+- No low contrast text — maintain 4.5:1 minimum
+- No instant state changes — always transition (150–300ms)
+- No invisible focus states
 - No complex navigation that hides key paths
 - No hidden contact info
 
 ---
 
-## Pre-Delivery Checklist
+## Quality Checklist
 
-Before delivering any UI code, verify:
-
-- [ ] Brand colors confirmed with user (NOT defaults)
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
+- [ ] Brand colors set (not defaults)
+- [ ] Icons from consistent set (Heroicons or Lucide)
+- [ ] cursor-pointer on all clickable elements
+- [ ] Hover states with 150–300ms transitions
 - [ ] Color contrast 4.5:1 minimum
 - [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected
+- [ ] prefers-reduced-motion respected
 - [ ] Responsive: 375px, 768px, 1024px, 1440px
 - [ ] No content hidden behind fixed navbars
 - [ ] No horizontal scroll on mobile

@@ -2,6 +2,18 @@
 
 Build a section or full page for this project following all 4 layers of our stack.
 
+## Pre-flight: Brand Colors
+
+Before writing any visual code, check if brand colors exist in `design-system/MASTER.md`. If only the template is there (no hex values defined), ask the user for:
+1. Brand colors (primary, secondary, accent/CTA)
+2. Background preference (light, dark, or both)
+3. Mood/vibe (e.g. "warm and friendly", "bold and playful")
+
+Then generate the palette:
+```bash
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<user's keywords>" --design-system --persist -p "<project-name>"
+```
+
 ## Stack Rules
 
 ### 1. Framework
